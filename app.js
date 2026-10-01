@@ -24,6 +24,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatSearchInput = document.getElementById('chat-search-input');
   const btnSearchChats = document.getElementById('btn-search-chats');
 
+  // Screen View Switchers (Ensures Welcome & Chat views are NEVER shown together)
+  function showWelcomeView() {
+    if (welcomeView) {
+      welcomeView.classList.remove('hidden');
+      welcomeView.style.display = 'flex';
+    }
+    if (chatConversationView) {
+      chatConversationView.classList.remove('active');
+      chatConversationView.style.display = 'none';
+    }
+  }
+
+  function showChatView() {
+    if (welcomeView) {
+      welcomeView.classList.add('hidden');
+      welcomeView.style.display = 'none';
+    }
+    if (chatConversationView) {
+      chatConversationView.classList.add('active');
+      chatConversationView.style.display = 'flex';
+    }
+  }
+
+  // Ensure initial view is strictly welcome screen
+  showWelcomeView();
+
   // Dynamic Greeting based on time of day
   function updateGreeting() {
     const hour = new Date().getHours();
@@ -111,8 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderChatsList(chatSearchInput ? chatSearchInput.value : '');
 
       // Switch to conversation view
-      welcomeView.style.display = 'none';
-      chatConversationView.style.display = 'flex';
+      showChatView();
       messagesContainer.innerHTML = '';
 
       // Update Chat View Header with Chat Title and Version
@@ -289,9 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
     inputElement.style.height = '';
 
     // Switch to conversation view immediately if in welcome view
-    if (welcomeView.style.display !== 'none') {
-      welcomeView.style.display = 'none';
-      chatConversationView.style.display = 'flex';
+    if (welcomeView && !welcomeView.classList.contains('hidden')) {
+      showChatView();
       messagesContainer.innerHTML = '';
     }
 
@@ -384,8 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNewChat.addEventListener('click', () => {
       activeChatId = null;
       renderChatsList(chatSearchInput ? chatSearchInput.value : '');
-      welcomeView.style.display = 'flex';
-      chatConversationView.style.display = 'none';
+      showWelcomeView();
       if (promptInput) {
         promptInput.value = '';
         promptInput.focus();
@@ -629,8 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // If the currently open chat was deleted, switch back to welcome dashboard
         if (activeChatId === chatIdToDelete) {
           activeChatId = null;
-          welcomeView.style.display = 'flex';
-          chatConversationView.style.display = 'none';
+          showWelcomeView();
           if (promptInput) {
             promptInput.value = '';
             promptInput.focus();

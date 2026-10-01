@@ -1003,13 +1003,21 @@ input, textarea {
   width: 100%;
   max-width: 820px;
   margin: 0 auto;
-  display: flex;
+  display: none;
   flex-direction: column;
   flex: 1;
   height: 100%;
   max-height: 100%;
   overflow: hidden;
   padding: 0;
+}
+
+.chat-conversation-view.active {
+  display: flex !important;
+}
+
+.content-canvas.hidden {
+  display: none !important;
 }
 
 .messages-container {
@@ -1419,13 +1427,21 @@ input, textarea {
   }
 
   /* Chat Conversation View on Mobile */
-  .chat-conversation-view {
+  .chat-conversation-view:not(.active) {
+    display: none !important;
+  }
+
+  .chat-conversation-view.active {
     padding: 0 !important;
     height: 100% !important;
     max-height: 100% !important;
     overflow: hidden !important;
     display: flex !important;
     flex-direction: column !important;
+  }
+
+  .content-canvas.hidden {
+    display: none !important;
   }
 
   .chat-view-header {
@@ -1473,20 +1489,52 @@ input, textarea {
     border-top: 1px solid rgba(226, 232, 240, 0.5) !important;
   }
 
-  .desktop-only-pill {
+  /* Desktop-only pills and icons */
+  .desktop-only-pill,
+  .desktop-only-icon {
     display: none !important;
+  }
+
+  .prompt-card {
+    border-radius: 16px !important;
+    padding: 10px 12px 8px 12px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .prompt-textarea {
+    font-size: 15px !important;
+    min-height: 40px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .prompt-controls-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    padding-top: 6px !important;
+    margin-top: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .prompt-controls-left {
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
+    min-width: 0 !important;
+    flex: 1 !important;
   }
 
   .prompt-controls-right {
     display: flex !important;
     align-items: center !important;
     flex-shrink: 0 !important;
+    margin-left: auto !important;
   }
 
   .btn-send-task {

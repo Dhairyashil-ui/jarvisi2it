@@ -176,14 +176,12 @@
                 </svg>
               </button>
 
-              <!-- Mode Segmented Pill (Chat vs Cowork / Agent) -->
-              <div class="mode-segmented-pill">
+              <!-- Mode Segmented Pill (Desktop Only) -->
+              <div class="mode-segmented-pill desktop-only-pill">
                 <button class="mode-pill-btn active" data-mode="chat">Chat</button>
                 <button class="mode-pill-btn" data-mode="cowork">Cowork</button>
               </div>
-            </div>
 
-            <div class="prompt-controls-right">
               <!-- Model Selector Pill -->
               <button class="model-selector-pill" id="btn-model-selector" title="Change AI Model (1.2 - 1.8)">
                 <span class="model-status-indicator"></span>
@@ -192,8 +190,10 @@
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
+            </div>
 
-              <button class="icon-btn" id="btn-speech-mic" title="Voice Input">
+            <div class="prompt-controls-right">
+              <button class="icon-btn desktop-only-icon" id="btn-speech-mic" title="Voice Input">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
                   <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
