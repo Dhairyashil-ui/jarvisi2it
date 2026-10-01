@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JARVIS 1.8 · Your AI Operating System</title>
+  <title>JARVIS 1.2 · Your AI Operating System</title>
   <link rel="icon" type="image/png" href="jarvis_emblem.png">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -134,7 +134,7 @@
             <div class="user-avatar-badge">DS</div>
             <div class="user-name-plan">
               <div>Dhairyashil</div>
-              <div class="user-plan-sub">JARVIS 1.8 Pro</div>
+              <div class="user-plan-sub">JARVIS 1.2 Pro</div>
             </div>
           </div>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-tertiary);">
@@ -185,8 +185,9 @@
 
             <div class="prompt-controls-right">
               <!-- Model Selector Pill -->
-              <button class="model-selector-pill" id="btn-model-selector" title="Select AI Model">
-                <span id="active-model-name">JARVIS 1.8</span>
+              <button class="model-selector-pill" id="btn-model-selector" title="Change AI Model (1.2 - 1.8)">
+                <span class="model-status-indicator"></span>
+                <span id="active-model-name">JARVIS 1.2</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
@@ -215,34 +216,61 @@
 
       <!-- Active Chat Conversation View (Displayed when a chat is selected) -->
       <div class="chat-conversation-view" id="chat-conversation-view" style="display: none;">
-        <div id="messages-container">
+        <!-- Chat View Header with Title and Delete Chat Action -->
+        <div class="chat-view-header" id="chat-view-header">
+          <div class="chat-header-title-box">
+            <h2 class="current-chat-title" id="current-chat-title">Conversation</h2>
+            <span class="chat-version-tag" id="current-chat-version-tag">JARVIS 1.2</span>
+          </div>
+          <div class="chat-header-actions">
+            <button class="btn-delete-chat-action" id="btn-delete-current-chat" title="Delete this conversation">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <line x1="10" y1="11" x2="10" y2="17"></line>
+                <line x1="14" y1="11" x2="14" y2="17"></line>
+              </svg>
+              <span>Delete chat</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="messages-container" class="messages-container">
           <!-- Dynamic conversation messages loaded here -->
         </div>
 
-        <!-- Docked Bottom Input Card (Claude Style) -->
-        <div class="prompt-card" style="margin-top: auto; margin-bottom: 20px;">
-          <textarea class="prompt-textarea" id="docked-prompt-input" placeholder="Reply to JARVIS 1.8..." rows="2"></textarea>
-          <div class="prompt-controls-bar">
-            <div class="prompt-controls-left">
-              <button class="icon-btn" title="Add files">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-              </button>
-              <div class="mode-segmented-pill">
-                <button class="mode-pill-btn active">Chat</button>
-                <button class="mode-pill-btn">Cowork</button>
+        <!-- Sticky Docked Bottom Input Card (Claude Mobile & Desktop) -->
+        <div class="chat-docked-input-wrapper" id="chat-docked-input-wrapper">
+          <div class="prompt-card docked-prompt-card" id="docked-prompt-card">
+            <textarea class="prompt-textarea" id="docked-prompt-input" placeholder="Reply to JARVIS 1.2..." rows="1"></textarea>
+            <div class="prompt-controls-bar">
+              <div class="prompt-controls-left">
+                <button class="icon-btn" title="Add files">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+                <div class="mode-segmented-pill desktop-only-pill">
+                  <button class="mode-pill-btn active">Chat</button>
+                  <button class="mode-pill-btn">Cowork</button>
+                </div>
+                <button class="model-selector-pill" id="btn-docked-model-selector" title="Change AI Model (1.2 - 1.8)">
+                  <span class="model-status-indicator"></span>
+                  <span id="docked-active-model-name">JARVIS 1.2</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
               </div>
-            </div>
-            <div class="prompt-controls-right">
-              <span style="font-size: 12px; color: var(--text-tertiary);">JARVIS 1.8</span>
-              <button class="btn-send-task" id="btn-docked-send">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="12" y1="19" x2="12" y2="5"></line>
-                  <polyline points="5 12 12 5 19 12"></polyline>
-                </svg>
-              </button>
+              <div class="prompt-controls-right">
+                <button class="btn-send-task" id="btn-docked-send" title="Send Reply">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -256,7 +284,7 @@
   <div class="modal-backdrop" id="modal-memory">
     <div class="modal-dialog">
       <div class="modal-header">
-        <h4 style="margin:0; font-size:16px;">JARVIS 1.8 · Persistent Memory</h4>
+        <h4 style="margin:0; font-size:16px;">JARVIS 1.2 · Persistent Memory</h4>
         <button class="icon-btn modal-close-btn" data-modal="modal-memory">&times;</button>
       </div>
       <div class="modal-body" id="memory-list-container">
@@ -286,6 +314,50 @@
       </div>
     </div>
   </div>
+
+  <!-- Model Selector Modal (Options 1.2 to 1.8) -->
+  <div class="modal-backdrop" id="modal-model-selector">
+    <div class="modal-dialog model-selector-dialog">
+      <div class="modal-header">
+        <div>
+          <h4 style="margin:0; font-size:16px; font-weight:600; color:var(--text-primary);">Select JARVIS Core Model</h4>
+          <p style="margin:2px 0 0 0; font-size:12px; color:var(--text-tertiary);">Versions 1.2 through 1.8</p>
+        </div>
+        <button class="icon-btn modal-close-btn" data-modal="modal-model-selector">&times;</button>
+      </div>
+      <div class="modal-body model-selector-body" id="model-options-list">
+        <!-- Populated dynamically with models 1.2 to 1.8 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-backdrop" id="modal-delete-confirm">
+    <div class="modal-dialog" style="max-width: 420px;">
+      <div class="modal-header" style="border-bottom:none; padding-bottom: 0;">
+        <h4 style="margin:0; font-size:16px; font-weight:600; color: #DC2626; display: flex; align-items:center; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+          Delete Conversation?
+        </h4>
+        <button class="icon-btn modal-close-btn" data-modal="modal-delete-confirm">&times;</button>
+      </div>
+      <div class="modal-body" style="padding-top: 10px;">
+        <p style="font-size:13.5px; color:var(--text-secondary); margin:0; line-height: 1.5;" id="delete-confirm-text">
+          Are you sure you want to delete this chat window? All messages will be permanently removed.
+        </p>
+      </div>
+      <div class="modal-actions-bar">
+        <button class="btn-cancel" id="btn-cancel-delete">Cancel</button>
+        <button class="btn-confirm-delete" id="btn-confirm-delete">Delete Chat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notifications Container -->
+  <div class="toast-container" id="toast-container"></div>
 
   <script src="app.js"></script>
 </body>

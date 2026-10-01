@@ -29,7 +29,7 @@ db_lock = Lock()
 client = Groq(api_key=GROQ_API_KEY or "missing-key")
 
 # Production System Prompt: Real human, seamless Marathi/English/Hindi mix
-SYSTEM_PROMPT = """You are JARVIS 1.8 — personal AI operating system and intelligent companion of Dhairyashil.
+SYSTEM_PROMPT = """You are JARVIS 1.2 — personal AI operating system and intelligent companion of Dhairyashil.
 
 Personality and Communication:
 1. Completely Human & Natural: Speak like a real, clever, warm human friend. Absolutely zero robotic phrases like "As an AI model" or "I am an artificial intelligence".
