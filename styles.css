@@ -1,0 +1,1429 @@
+/* ==========================================================================
+   JARVIS 1.8 · Claude Edition Design System
+   Pristine White Background + Logo-Themed Electric Cyan & Titanium Navy Accents
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ==========================================
+     White Background & Logo-Themed Palette
+     Derived from JARVIS AI Operating System Logo
+     ========================================== */
+  
+  /* Primary White & Clean Light Backgrounds */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-sidebar: #F9FAFB;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-input: #FFFFFF;
+  --bg-pill: #F1F5F9;
+  --bg-pill-hover: #E2E8F0;
+  --bg-active: #E0F2FE;
+  
+  /* Text & Typography */
+  --text-primary: #0A192F;       /* Deep Titanium Obsidian */
+  --text-secondary: #475569;     /* Slate Neutral */
+  --text-tertiary: #94A3B8;      /* Muted Slate */
+  --text-inverse: #FFFFFF;
+  
+  /* Borders */
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --border-focus: #00D2FF;       /* Electric Cyan Focus */
+  
+  /* JARVIS Logo Accents (Electric Cyan, Neon Blue, Titanium Navy) */
+  --jarvis-cyan: #00D2FF;        /* Official Electric Cyan Glow */
+  --jarvis-cyan-subtle: rgba(0, 210, 255, 0.12);
+  --jarvis-cyan-border: rgba(0, 210, 255, 0.35);
+  --jarvis-cyan-glow: 0 0 24px rgba(0, 210, 255, 0.30);
+  
+  --jarvis-blue: #0088FF;        /* Vibrant Tech Blue */
+  --jarvis-navy: #0A192F;        /* Deep Titanium Navy */
+  --jarvis-navy-light: #1E293B;  /* Slate Navy */
+  
+  /* 5 Core Autonomous Function Colors */
+  --color-ask: #00D2FF;
+  --color-context: #0284C7;
+  --color-execution: #059669;
+  --color-memory: #7C3AED;
+  --color-verification: #0284C7;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(10, 25, 47, 0.05);
+  --shadow-md: 0 4px 16px rgba(10, 25, 47, 0.06), 0 1px 3px rgba(10, 25, 47, 0.04);
+  --shadow-lg: 0 12px 36px rgba(10, 25, 47, 0.08), 0 2px 8px rgba(0, 210, 255, 0.08);
+  --shadow-prompt: 0 4px 20px rgba(10, 25, 47, 0.06), 0 0 0 1px var(--border-subtle);
+  --shadow-prompt-focus: 0 6px 24px rgba(0, 210, 255, 0.15), 0 0 0 2px var(--jarvis-cyan);
+  
+  /* Typography */
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Layout Dimensions */
+  --sidebar-width: 275px;
+  --artifact-width: 520px;
+  --header-height: 48px;
+  
+  /* Transitions */
+  --transition-fast: 0.16s ease;
+  --transition-smooth: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Optional Dark Mode (Titanium Stealth Mode with Neon Cyan) */
+[data-theme="dark"] {
+  --bg-primary: #080D1A;
+  --bg-secondary: #0D1527;
+  --bg-sidebar: #0A1120;
+  --bg-card: #0F1A30;
+  --bg-card-hover: #14223E;
+  --bg-input: #0F1A30;
+  --bg-pill: #13223E;
+  --bg-pill-hover: #192D52;
+  --bg-active: rgba(0, 210, 255, 0.18);
+  
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-tertiary: #64748B;
+  --text-inverse: #080D1A;
+  
+  --border-subtle: #1E293B;
+  --border-strong: #334155;
+  --border-focus: #00D2FF;
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.6);
+  --shadow-prompt: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-subtle);
+  --shadow-prompt-focus: 0 6px 30px rgba(0, 210, 255, 0.25), 0 0 0 2px var(--jarvis-cyan);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--jarvis-cyan);
+}
+
+/* ==========================================================================
+   Window Title Bar (Matching Desktop Claude App)
+   ========================================================================== */
+
+.window-titlebar {
+  height: var(--header-height);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+  z-index: 100;
+  position: relative;
+}
+
+.titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titlebar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titlebar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--bg-pill);
+  color: var(--text-primary);
+}
+
+.icon-btn.active {
+  background: var(--jarvis-cyan-subtle);
+  color: var(--jarvis-blue);
+}
+
+.plan-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.plan-badge-pill:hover {
+  border-color: var(--jarvis-cyan-border);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.15);
+}
+
+.status-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--jarvis-cyan);
+  box-shadow: 0 0 8px var(--jarvis-cyan);
+  animation: pulseNeon 2s infinite ease-in-out;
+}
+
+@keyframes pulseNeon {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  border-left: 1px solid var(--border-subtle);
+  padding-left: 8px;
+}
+
+.win-control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+}
+
+.win-control-btn:hover {
+  background: var(--bg-pill);
+  color: var(--text-primary);
+}
+
+.win-control-btn.close:hover {
+  background: #EF4444;
+  color: #FFF;
+}
+
+/* ==========================================================================
+   Main App Container (Sidebar + Content + Artifacts Split Pane)
+   ========================================================================== */
+
+.app-container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* ==========================================================================
+   Sidebar Navigation
+   ========================================================================== */
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: margin-left var(--transition-smooth);
+  user-select: none;
+  z-index: 40;
+}
+
+.sidebar.collapsed {
+  margin-left: calc(-1 * var(--sidebar-width));
+}
+
+.sidebar-header {
+  padding: 14px 14px 10px 14px;
+}
+
+/* + New Button (Claude Signature Pill) */
+.btn-new-task {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 9px 14px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-new-task:hover {
+  background: var(--bg-pill);
+  border-color: var(--jarvis-cyan);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.btn-new-task .plus-icon {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--jarvis-blue);
+}
+
+/* Sidebar Nav Links */
+.sidebar-nav-list {
+  list-style: none;
+  padding: 6px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.nav-item-btn:hover {
+  background: var(--bg-pill);
+  color: var(--text-primary);
+}
+
+.nav-item-btn.active {
+  background: var(--jarvis-cyan-subtle);
+  color: var(--jarvis-navy);
+  font-weight: 500;
+}
+
+.nav-item-btn svg {
+  color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.nav-item-btn:hover svg,
+.nav-item-btn.active svg {
+  color: var(--jarvis-blue);
+}
+
+/* Chats and Tasks Section */
+.chats-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 14px 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.3px;
+}
+
+.section-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.chats-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 10px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chat-history-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.chat-history-item:hover {
+  background: var(--bg-pill);
+  color: var(--text-primary);
+}
+
+.chat-history-item.active {
+  background: var(--bg-primary);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
+  color: var(--jarvis-navy);
+}
+
+.chat-item-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.chat-history-item:hover .chat-item-bullet,
+.chat-history-item.active .chat-item-bullet {
+  border-color: var(--jarvis-cyan);
+  background: var(--jarvis-cyan);
+  box-shadow: 0 0 6px var(--jarvis-cyan);
+}
+
+.chat-item-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sidebar Footer (User Profile) */
+.sidebar-footer {
+  padding: 12px 14px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-sidebar);
+}
+
+.user-profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.user-profile-card:hover {
+  background: var(--bg-pill);
+}
+
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0A192F 0%, #0088FF 100%);
+  color: #FFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+}
+
+.user-name-plan {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.user-plan-sub {
+  color: var(--text-tertiary);
+  font-size: 11.5px;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+
+.main-content {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+/* Center Content Wrapper */
+.content-canvas {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 10vh 24px 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+}
+
+/* ==========================================================================
+   Hero Section with Official JARVIS Logo & Greeting
+   ========================================================================== */
+
+.hero-branding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+/* Official JARVIS 3D Logo Presentation */
+.jarvis-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.jarvis-hero-logo {
+  max-width: 440px;
+  height: auto;
+  filter: none;
+  transition: transform var(--transition-smooth);
+}
+
+.jarvis-hero-logo:hover {
+  transform: scale(1.01);
+  filter: none;
+}
+
+/* Editorial Serif Greeting (Claude Signature Typography) */
+.editorial-greeting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.greeting-title {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.6px;
+}
+
+/* Quota / Status Notice Banner (Claude Style) */
+.quota-notice-card {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.quota-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quota-link {
+  color: var(--jarvis-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.quota-link:hover {
+  text-decoration: underline;
+}
+
+.btn-quota-upgrade {
+  padding: 4px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.btn-quota-upgrade:hover {
+  background: var(--jarvis-cyan-subtle);
+  border-color: var(--jarvis-cyan);
+  color: var(--jarvis-blue);
+}
+
+/* ==========================================================================
+   Claude-Style Floating Prompt Input Card
+   ========================================================================== */
+
+.prompt-card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-prompt);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px 16px;
+  transition: all var(--transition-smooth);
+  position: relative;
+}
+
+.prompt-card:focus-within {
+  box-shadow: var(--shadow-prompt-focus);
+  border-color: var(--jarvis-cyan);
+}
+
+.prompt-textarea {
+  width: 100%;
+  min-height: 52px;
+  max-height: 180px;
+  resize: none;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  border: none;
+  outline: none;
+  padding: 4px 6px;
+}
+
+.prompt-textarea::placeholder {
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+/* Prompt Bottom Controls */
+.prompt-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.prompt-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prompt-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Chat / Cowork Mode Toggle Pill */
+.mode-segmented-pill {
+  display: flex;
+  align-items: center;
+  background: var(--bg-pill);
+  padding: 2px;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.mode-pill-btn {
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.mode-pill-btn.active {
+  background: var(--bg-primary);
+  color: var(--jarvis-navy);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Model Selector Pill */
+.model-selector-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 16px;
+  background: var(--bg-pill);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.model-selector-pill:hover {
+  background: var(--bg-pill-hover);
+  border-color: var(--jarvis-cyan-border);
+  color: var(--text-primary);
+}
+
+.btn-send-task {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0A192F 0%, #0088FF 100%);
+  color: #FFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.btn-send-task:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(0, 210, 255, 0.5);
+}
+
+.btn-send-task:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================================================
+   Suggestion Action Chips (Claude Style)
+   ========================================================================== */
+
+.suggestion-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  margin-bottom: 32px;
+}
+
+.action-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.action-chip:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--jarvis-cyan);
+  color: var(--text-primary);
+  box-shadow: 0 2px 10px rgba(0, 210, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.action-chip .chip-icon {
+  font-size: 13px;
+  color: var(--jarvis-blue);
+}
+
+/* ==========================================================================
+   JARVIS 1.8 - 5 Core Autonomous Functions Showcase
+   ========================================================================== */
+
+.pipeline-showcase-card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pipeline-showcase-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0A192F 0%, #00D2FF 50%, #0088FF 100%);
+}
+
+.pipeline-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.pipeline-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pipeline-header-title h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.version-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--jarvis-cyan-subtle);
+  color: var(--jarvis-blue);
+  border: 1px solid var(--jarvis-cyan-border);
+}
+
+.btn-run-pipeline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #0A192F, #0088FF);
+  color: #FFF;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.btn-run-pipeline:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(0, 210, 255, 0.5);
+}
+
+/* 5 Steps Interactive Stepper */
+.functions-stepper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.function-step-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.function-step-card:hover {
+  background: var(--bg-pill);
+  border-color: var(--border-strong);
+}
+
+.function-step-card.active {
+  background: var(--bg-primary);
+  border-color: var(--jarvis-cyan);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.2);
+}
+
+.step-num-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  color: #FFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  transition: all var(--transition-fast);
+}
+
+.function-step-card.active .step-num-badge {
+  background: var(--jarvis-cyan);
+  color: #000;
+  box-shadow: 0 0 8px var(--jarvis-cyan);
+}
+
+.step-label-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.step-label-desc {
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+  margin-top: 3px;
+}
+
+/* Active Step Details Panel */
+.active-step-details {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.step-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.step-tag-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--jarvis-cyan-subtle);
+  color: var(--jarvis-blue);
+}
+
+/* ==========================================================================
+   Chat Conversation View (When an active chat is selected)
+   ========================================================================== */
+
+.chat-conversation-view {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.chat-message-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.chat-avatar.user {
+  background: linear-gradient(135deg, #0A192F, #1E293B);
+  color: #FFF;
+}
+
+.chat-avatar.assistant {
+  background: #FFF;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+  padding: 3px;
+}
+
+.chat-avatar.assistant img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.message-bubble {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.message-body {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* Artifact Card inside Chat Message */
+.inline-artifact-card {
+  margin-top: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.inline-artifact-card:hover {
+  border-color: var(--jarvis-cyan);
+  box-shadow: 0 4px 16px rgba(0, 210, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.artifact-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.artifact-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--jarvis-cyan-subtle);
+  color: var(--jarvis-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artifact-titles h5 {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.artifact-titles p {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Claude Split-Screen Artifacts Drawer (Right Pane)
+   ========================================================================== */
+
+.artifacts-split-pane {
+  width: var(--artifact-width);
+  height: 100%;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 24px rgba(10, 25, 47, 0.06);
+  transition: width var(--transition-smooth), transform var(--transition-smooth);
+  z-index: 50;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.artifacts-split-pane.open {
+  transform: translateX(0);
+}
+
+.artifact-pane-header {
+  height: 48px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+}
+
+.artifact-pane-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.artifact-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.artifact-tab-btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.artifact-tab-btn:hover {
+  background: var(--bg-pill);
+  color: var(--text-primary);
+}
+
+.artifact-tab-btn.active {
+  background: var(--bg-primary);
+  color: var(--jarvis-navy);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.artifact-content-canvas {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.artifact-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #FFF;
+}
+
+.artifact-code-block {
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  background: var(--bg-secondary);
+  height: 100%;
+  overflow: auto;
+}
+
+/* ==========================================================================
+   Modals & Popups (Projects, Memories, Settings)
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 25, 47, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.memory-item-card {
+  padding: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.memory-category-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--jarvis-blue);
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   Mobile & Tablet Responsiveness (< 768px & < 480px)
+   ========================================================================== */
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 25, 47, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 998;
+}
+
+@media (max-width: 768px) {
+  /* Titlebar */
+  .window-titlebar {
+    padding: 0 10px;
+    height: 48px;
+  }
+  
+  .window-controls {
+    display: none !important;
+  }
+
+  .plan-badge-pill {
+    padding: 3px 10px;
+    font-size: 11.5px;
+  }
+
+  /* Off-canvas mobile drawer */
+  .sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: 285px !important;
+    max-width: 84vw !important;
+    z-index: 999 !important;
+    box-shadow: 6px 0 28px rgba(10, 25, 47, 0.25) !important;
+    transform: translateX(0);
+    transition: transform var(--transition-smooth);
+    margin-left: 0 !important;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-100%) !important;
+    margin-left: 0 !important;
+  }
+
+  .sidebar:not(.collapsed) + .sidebar-backdrop {
+    display: block;
+  }
+
+  /* Main Canvas full-width */
+  .main-content {
+    width: 100% !important;
+  }
+
+  .content-canvas {
+    padding: 40px 14px 40px 14px !important;
+    min-height: auto;
+  }
+
+  /* Hero Section */
+  .jarvis-hero-logo {
+    max-width: 270px !important;
+    width: 82% !important;
+    margin-bottom: 16px !important;
+  }
+
+  .greeting-title {
+    font-size: 26px !important;
+    letter-spacing: -0.4px !important;
+    margin-bottom: 22px !important;
+  }
+
+  /* Prompt Card on Mobile */
+  .prompt-card {
+    border-radius: 16px !important;
+    padding: 12px 12px 10px 12px !important;
+  }
+
+  .prompt-textarea {
+    font-size: 14.5px !important;
+    min-height: 44px !important;
+  }
+
+  .prompt-controls-bar {
+    gap: 6px !important;
+    padding-top: 6px !important;
+  }
+
+  .mode-pill-btn {
+    padding: 3px 8px !important;
+    font-size: 11.5px !important;
+  }
+
+  .model-selector-pill {
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+  }
+
+  /* Chat Conversation View on Mobile */
+  .chat-conversation-view {
+    padding: 16px 12px !important;
+  }
+
+  .chat-message-row {
+    gap: 10px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .chat-avatar {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 10px !important;
+  }
+
+  .message-body {
+    font-size: 13.5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .jarvis-hero-logo {
+    max-width: 230px !important;
+  }
+
+  .greeting-title {
+    font-size: 22px !important;
+  }
+
+  .model-selector-pill span {
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+}
